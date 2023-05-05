@@ -1,0 +1,149 @@
+{% extends 'mitsheathcare/mitscore/core.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block main-content %}
+
+<section class="about "  id="abot" style="background-color: #ffffff;">
+<div class="about-intro content_above ">
+    <div class="container-fluid ">
+        <div class="row  company-header p-5  ">
+       
+          <div class="col-lg-8 col-md-12">
+           <div class="autoplay4 m-0 p-0" id=""data-slick='{"slidesToShow": 6, "settings":{"slidesToShow":4 }]}'>
+           {% for i in banner %} 
+            <div class="card bg-white m-0 p-0 " style="height: 100%; ">
+            <img src="{{i.banner.url}}" alt=""  class=" w-100">
+          </div>
+           {% endfor %} 
+             </div>
+              </div>
+             
+              <div class="col-lg-4 col-md-6 p-4 mx-auto">
+                <div class="card " style="width: 100%; border-radius: 20px;">
+                  <form action="{% url 'FranchiseApp:send' %}" method="post">
+                  {% csrf_token %}
+                    <div class="col-12  text-center text-white" style="border-radius: 20px; height: 40px;background:{{comp.Company_color2}};">
+                      <h4>Send Query</h4>
+                    </div>
+                    <div class="row p-4">
+                     
+                      <div class="col-12 mt-2">
+                        <input type="text" class="form-control" placeholder="Full name*" name="naam" required>
+                      </div>
+                      <div class="col-6 mt-4">
+                        <input type="text" class="form-control" placeholder="E-mail*" name="mail" required>
+                      </div>
+                      <div class="col-6 mt-4">
+                        <input type="text" class="form-control" placeholder="Phone*" name="no" required>
+                      </div>
+                       
+                      <div class="col-12 mt-4">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Message*" name="dec" required></textarea>
+                      </div>
+                      <div class="col-12 mt-4">
+                      <button type="submit" class="btn  w-100 text-white" style="background:{{comp.Company_color2}};">Send</button>
+                    </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+   </section>
+   <h3 class="mt-3 text-center">Our Product Range</h3>
+   <section style="background-color: rgb(233, 233, 235);" class="mt-3">
+    
+    <div class="autoplay p-3" id="" data-slick='{"slidesToShow": 6, "settings":{"slidesToShow":4 }]}'>
+       {% for i in  product %}
+    <a href="{% url 'FranchiseApp:Productdetail' i.id %}">
+      <div class="card bg-white p-4 d-flex" style="height: 200px;"  >
+          <img src="{{i.pro_image.url}}" height="150px" >
+      </div>
+    </a>
+      {% endfor %}
+    </div>
+ 
+   </section>
+   
+<section id="about" class="about-contents section-padding mt-5">
+    <div class="container">
+        <div class="row">
+            
+<div class="col-lg-12 contents-wrapper">
+    <div class="contents">
+      <div class="row">
+      <div class="col-lg-12 col-sm-6 mt-5 mt-md-0">
+               
+              {% comment %} {% for c in company  %} {% endcomment %}
+                <h1>About {{ company.Company_name}}</h1>
+                <p><b>{{ company.Company_name}}</b>
+               {{ company.Company_about |striptags }}
+                     <br><i></i></p> 
+                <div class="table-responsive" style="margin-top:25px;">          
+                      <table class="table table-condensed">
+                          <tbody>
+                            <tr>
+                                <td><strong>Nature of Business</strong></td>
+                                <td>{{ company.Company_nature_of_business}}</td>                                    
+                              </tr>
+                             <tr>
+                                <td><strong>Additional Business</strong></td>
+                                <td><ul>
+                                  {% for i in  business %}
+                                <li class="ml-4">{{i.name}}</li>
+                                  {% endfor %}
+                                </ul></td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Company CEO</strong></td>
+                                <td>{{company.Company_ceo}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Corporate Office Address</strong></td>
+                                <td>{{company.Company_corporate_address}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Registered Office Address</strong></td>
+                                <td>{{company.Company_registed_address}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Industry</strong></td>
+                                <td>{{company.Company_industry}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Total Number of Employees</strong></td>
+                                <td>{{company.Company_total_employee}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Legal Status of Firm</strong></td>
+                                <td>{{company.Company_legal_status_of_firm}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Statutory Profile<br>PAN No</strong></td>
+                                <td>{{company.Company_pan_no}}</td>                                    
+                              </tr>
+                               <tr>
+                                <td><strong>GST No</strong></td>
+                                <td>{{company.Company_gts_no}}</td>                                    
+                              </tr>
+                              <tr>
+                        {% comment %} {% endfor %} {% endcomment %}
+                    </ul>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+ 
+  </section>
+        
+{% endblock main-content %}
+
+<div class="slider-slide" aria-label="slide 5 of 15" role="group" style="box-sizing: border-box; display: inline-block; height: 19px; left: 760px; list-style-type: none; margin: auto 8px; position: absolute; top: 0px; transform: scale(1); transition: transform 0.4s linear 0s; vertical-align: top; width: 174px;" inert="" aria-hidden="true"><a href="https://company.pharmahopers.com/aelida-healthcare/product/aelfix-cv" target="_blank" aria-hidden="true" tabindex="-1"><img class="Carousel__Image-sc-bwtv6d-1 hWhvhm" src="https://www.pharmahopers.com/assets/images/products/6f7bbafd-fce3-4f8b-a63d-f41b5f31d96b-aelfix cv.png" alt="aelfix-cv"></a></div>

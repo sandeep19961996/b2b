@@ -1,0 +1,42 @@
+{% extends 'core/core.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+{% block main-content %}
+ 
+      <!-- Start Produts category -->
+       <div class="container mt-5 p-5"   data-aos="fade-up" data-aos-duration="2000"  >
+         <h1 class="text-center  text-white" style="background-color: black;">Product Category</h1>
+         <div class="row mt-5 ">
+         {% for pro in product %}
+            <div class="col-xl-4 col-sm-6">
+                      <a href="{% url 'B2bApp:filter_subcategory' pro.id %}" class="wsus__category_single">
+                      <div class="wsus__category_img">
+                          <img src="{{pro.Product_image.url}}" alt="img" class="img-fluid w-100">
+                          </div>
+                          <div class="wsus__category_text">
+                              <div class="wsus__category_text_center">
+                                <p >{{pro.Product_category}}</p>
+                           </div>
+                          </div>
+                      </a>
+                  </div>
+                  {% endfor %} 
+            {% comment %} {% for pro in product %}
+            <div class="col-lg-3" >
+              <div class="card  mt-4" >
+                <div id="cat" >
+              <img src="{{pro.Product_image.url}}" alt="" class="w-100 " style="opacity: 0.3; ">
+            </div>
+              <div class="centered ">
+              <h6 class="text-white ">{{pro.Product_category}}</h6>
+             <a href="{% url 'B2bApp:filter_subcategory' pro.id %}" class=" btn btn-outline-warning"> view listings</a></div>
+            </div>
+          </div>
+          {% endfor %}   {% endcomment %}
+          </div>
+          </div>
+          </div>
+  
+        <!-- End Produts category -->
+  
+  {% endblock main-content %}

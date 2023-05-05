@@ -1,0 +1,335 @@
+{% extends 'core/core.html' %}
+{% load static %}
+{% block title %}Listing{% endblock title %}
+{% block main-content %}
+ <!--============================
+        Send mail popup START
+    ==============================-->
+<div class="modal fade-show" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content clearfix" >
+        <button type="button " class="close " data-dismiss="modal" aria-label="Close" style="background-color: red;border: 1px solid red;">
+        <span aria-hidden="true" style="color:white;">&times;</span>
+        </button>
+     <div class="modal-header mt-4">
+      <div class="col-12 bg-danger text-center text-white " style="border-radius: 20px; height: 40px;background: linear-gradient(to right, #ff334e, #f30808, #f52804);">
+          <h4 class="text-white mt-2">Send Query</h4>
+        </div>
+       </div>
+      <div class="modal-body">
+      <form action="{% url 'B2bApp:send' %}" method="post" navigation>
+      {% csrf_token %}
+          <div class="row ">
+             <div class="col-12 ">
+                <input type="text" class="form-control border border-dark " placeholder="Full name*" name="name" required>
+              </div>
+              <div class="col-12 mt-4">
+                <input type="text" class="form-control border border-dark" placeholder="E-mail* " name="emailid" required>
+              </div>
+              <div class="col-12 mt-4">
+                <input type="text" class="form-control border border-dark" placeholder="Phone*" name="number" required>
+              </div>
+               <div class="col-12 mt-4">
+                <textarea class="form-control border border-dark" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Message*" name="mes" required></textarea>
+              </div>
+              <div class="col-12 mt-4 ">
+              <button type="submit" class="btn btn-danger w-100 ">Send</button>
+             </div>
+            </div>
+          </form>
+       </div>
+     </div>
+  </div>
+</div>
+ <!--============================
+        Send mail popup end
+    ==============================-->
+      
+  <!-- Start Franchise Location  -->
+ <section id="listing " class="listing " style="    background: #f5f7fc;  width: 100%;"  data-aos="zoom-out-down" data-aos-duration="2000"> 
+  <div class="container-fluid h-100  p-4">
+    <div class="row px-xl-5 mt-3">
+      
+        <div class="card w-100 bg-white mt-5 h-100 p-0  "style="  box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+          <h4 class="mt-3 ml-4 ">All Listings  </h4>
+          <div class="row  m-0 p-3 " >
+            {%  for i in location %}
+            <div class="col"><a class=" " href="{% url 'B2bApp:location_filter'  i   %}" style="color: black;text-decoration: none;"><h6>{{i}}</h6></a></div>
+            {% endfor %}
+          </div>
+          </div>
+          </div>
+  <!-- End Franchise Location  -->
+  {% comment %} <section style=" margin-top:5%; ">
+    <div class="autoplay3 m-0 p-0 " id=""data-slick='{"slidesToShow": 7, "settings":{"slidesToShow":4 }]}'>
+    {% for o in page_obj %}
+     <a href="{{o.Company_url}}">
+        <div class="card bg-white m-0 p-0" style="height: 100%;">
+            <img src="{{o.Company_banner.url}}" class="w-100 ">
+        </div>
+       </a>
+       {% endfor %}
+      </div>
+  
+    </section> {% endcomment %}
+       <!-- <div class="container-fluid p-4">
+          <div class="row m-0 p-0 " style="box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+             <video  class="bgv mx-auto w-100" playsinline muted loop autoplay >
+              <source src="{% static 'image/banner/23b7f70377bcc365b901a779020f582e(2).mp4 ' %}" type="video/mp4"  >
+            </video>  
+          <img src="{% static 'image/banner/23b7f70377bcc365b901a779020f582e.jpg ' %}" alt="" class="mx-auto  img-fluid w-100 h-100" > 
+          </div>
+          </div>   -->
+        <!--  Start Pharma Franchise -->
+        <div class="container-fluid  p-4">
+          <div class="row ml-0 " >
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 " data-aos="fade-right" data-aos-duration="2000">
+             
+              <div class="card bg-white card mb-3 w-100 p-3  free-1" style="height: 500px;box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+                <h4 class=" mt-3">Pharma Franchise</h4>
+                         
+                      <div class="d-flex flex-column  ml-1 mt-3 listings_a ">
+                        {% for pr in subCategorys %}
+                          <a class=" text-danger " href="{% url 'B2bApp:filter_subcategory' pr.id %}" style="text-decoration: none;line-height: 1px;">{{pr.name}}</a>
+                          <hr>
+                            {% endfor %}
+                 </div>
+            
+              </div>
+              
+              <div class="" data-aos="fade-right" data-aos-duration="2000">
+                <div class="card bg-white p-3 free-1" style="height: 450px;box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+                  <h4 class="  mt-3">Third Party Manufacturer</h4>
+                        <div class="d-flex flex-column ml-1 mt-3 listings_a">
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=third" style="text-decoration: none;line-height: 2px;">Third-Party Manufacturing</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=ayurvedic" style="text-decoration: none;line-height: 2px;">Ayurvedic Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=allopethic" style="text-decoration: none;line-height: 2px;">Allopathic Product Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=derma" style="text-decoration: none;line-height: 2px;">Derma Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=veterinary " style="text-decoration: none;line-height: 2px;">Veterinary Product Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=diabetic" style="text-decoration: none;line-height: 2px;">Diabetic Product Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=syrup" style="text-decoration: none;line-height: 2px;">Syrup Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=Pharma Tablet" style="text-decoration: none;line-height: 2px;">Pharma Tablet Manufacturer</a>
+                            <hr>
+                            <a class="text-danger" href="http://127.0.0.1:8000/serach/?r=companies%2Fsearch-companies&iType=&iName=&iNo=&look=Pharma Capsule" style="text-decoration: none;line-height: 2px;">Pharma Capsule Manufacturer</a>
+                            <hr>
+                 </div>
+                </div>
+              </div>
+              <div class="mt-3 banner-banner" data-aos="fade-right" data-aos-duration="2000">
+                    {% for bb in page_obj %}
+                  <div class=" mt-3" style="box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+                   <a href="{% url 'FranchiseApp:home'  bb.id %}">
+                   <img src="{{bb.Company_subbanner.url}}" alt="" class="w-100">
+                  </a>
+                  </div>
+                  {% endfor %}
+                  
+             
+              </div>
+              </div>
+              
+               <!--  End Pharma Franchise -->
+
+               <!-- Start Franchise Company  -->
+              
+             <div class="col-sm-6  mt-3" style="margin-top: 500px;" data-aos="fade-up" data-aos-duration="2000">
+              {% if page_obj %}
+              {% for p in page_obj %}
+
+              <div class="card mb-3 w-100" style="box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;" >
+                <div class="row no-gutters">
+                  <div class="col-md-4 my-auto">
+                    <img src="{{p.Company_logo.url}}" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8 w-100">
+                    <div class="card-body border border">
+                      <a href="{% url 'FranchiseApp:home' p.id %}" style="text-decoration: none;color: black; " class="hov" target="_blank"><h5 class="card-title ">{{p.Company_name}}</h5></a>
+                      <a href="{% url 'FranchiseApp:home'  p.id %}" class="btn btn-outline-warning " data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 13px;">Contact Supplier <i class="fa-solid fa-boxes-packing"></i></a>
+                      <a href="{% url 'FranchiseApp:home' p.id  %}" class="btn btn-outline-danger" style="font-size: 13px;">View Catalog <i class="fa-solid fa-file-circle-plus ml-4"></i></a>
+                      <p class="card-text mt-2"><i class="fa-solid fa-location-dot text-danger" ></i> {{p.Company_location}}</p>
+                      <span class="border border-dark d-flex"></span>
+                      <p class=" h5 card-text mt-1 "><small class="text-muted">{{p.Company_description |striptags }} </small>
+                      <a href="{% url 'FranchiseApp:home' p.id  %}" class=" h6 text-danger">Read More..</a></p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              {% endfor %}
+              {% else %}
+                 <div class="text-center">
+                  <img src="{% static 'image/icon/DataNotFound.png' %}" alt="" class="img-fluid" >
+                <!-- <iframe src="https://giphy.com/embed/8L0Pky6C83SzkzU55a" width="40%" height="40%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>  -->
+                  </div>
+
+                 {% endif %}
+                     
+              <!-- End  Franchise Company  -->
+
+              <!--  Start  Pagination   -->
+              {% if page_obj %}
+                               
+                           <nav aria-label="Page navigation example" class="mt-5">
+                              <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}  
+                                <li class="page-item">
+                                  <a class="page-link text-danger" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                                </li>
+                                {% endif %}
+                                <li class="page-item "><a class="page-link text-dark" href="#">{{page_obj.number}}</a></li>
+                                
+                                {% if page_obj.has_next %}   
+                                <li class="page-item">
+                                  <a class="page-link text-danger" href="?page={{page_obj.next_page_number}}">Next</a>
+                                </li>
+                                {% endif %}
+                              </ul>
+                            </nav>
+                        {% endif %}
+                    <!--  End  Pagination   -->
+                    </div>
+          <!-- Start Post your Requiremen  -->
+             <div class=" col-xl-3 col-lg-6 col-md-6 col-sm-6" id="post" data-aos="fade-left" data-aos-duration="2000">
+              <div class="card bg-white" style="height: 560px;box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+                <form action="{% url 'AccountApp:post' %}" method="post" navigation>
+                {% csrf_token %}
+                  <div class="col-12 bg-danger text-center text-white "  style="height: 35px;background: linear-gradient(to right, #ff334e, #f30808, #f52804);">
+                    <h5 class="text-white p-1">Post your Requirement</h5>
+                  </div>
+                  <div class="row p-2">
+                  <div class="col-12 ">
+                      <div class="input-group ">
+                        <label for="">You are looking for?
+                        <select class="custom-select" id="inputGroupSelect04" name="category">
+                        </label>
+                          <option value="">Select-Category</option>
+                          <option value="Pharma Franchis">Pharma Franchise</option>
+                          <option value="Third Party Manufacturing">Third Party Manufacturing</option>
+                          <option value="Ayurvedic PCD Franchise">Ayurvedic PCD Franchise</option>
+                          <option value="Pharmaceutical Drugs and Medicine">Pharmaceutical Drugs and Medicine</option>
+                          <option value="Ayurvedic Herbal Manufacturing">Ayurvedic Herbal Manufacturing</option>
+                          <option value="Business Opportunities">Business Opportunities</option>
+                        </select>
+                      </div>
+                      <div class="input-group ">
+                        <label for="">Requirement Emergency
+                        <select class="custom-select" id="inputGroupSelect04" name="duretion">
+                        </label>
+                          <option value="">Select Time Duretion</option>
+                          <option value="Immediate">Immediate</option>
+                          <option value="Within 15 Days">Within 15 Days</option>
+                          <option value="Within a Month">Within a Month</option>
+                        </select>
+                      </div>
+                      <div class="input-group ">
+                        <label for="">Call-Time Preference
+                        <select class="custom-select" id="inputGroupSelect04" name="time">
+                        </label>
+                          <option value="">Select The Call Time </option>
+                          <option value="Anytime">Anytime</option>
+                          <option value="Morning">Morning</option>
+                          <option value="Afternoon">Afternoon</option>
+                          <option value="Evening">Evening</option>
+                        </select>
+                      </div>
+                     
+                       <!-- <div class="row">
+          <div class="col-lg-13"> -->
+          <div class="input-group mt-2">
+               <select class="form-control " id="inputState2" name="state">
+                        <option value="">Select State</option>
+                        <option value="Andra Pradesh">Andra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madya Pradesh">Madya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Orissa">Orissa</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttaranchal">Uttaranchal</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                        <option value="Daman and Diu">Daman and Diu</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Lakshadeep">Lakshadeep</option>
+                        <option value="Pondicherry">Pondicherry</option>
+                      </select>
+                       </div>
+                      </div>
+                      <!-- <div class="col-lg-6"> -->
+                     <div class="input-group mt-2"  style="margin-left: 15px; margin-right: 15px;">
+
+                       <select class="form-control" id="inputDistrict2" name="city">
+                        <option value="">Select City </option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- </div>
+                  </div> -->
+                      <div class="col-12 mt-2 p-0">
+                        <input type="text" class="form-control " placeholder="Email" name="email" required>
+                      </div>
+                      <div class="col-12 mt-2 p-0">
+                        <input type="text" class="form-control" placeholder="Phone" name="phone" required>
+                      </div>
+                       <div class="col-12 mt-2 p-0">
+                        <textarea class="form-control" id="exampleFormControlTextarea1"  rows="2" placeholder="Enter Your Message" name="mess" value="" required></textarea>
+                    </div>
+                      <div class="col-12 mt-4 p-0" >
+                      <button type="submit" class="btn btn-danger w-100" style="background: linear-gradient(to right, #ff334e, #f30808, #f52804);">Send</button>
+                    </div>
+                  </form>
+              <!-- </div>  -->
+             </div>
+              <!-- End Post your Requiremen  end-->
+              <div class="mt-3 banner-banner" data-aos="fade-left" data-aos-duration="2000">
+               {% for bb in page_obj %}
+                  <div class=" mt-3" style="box-shadow: 0 0 10px 1px #8a8888,0 10px 20px #8a8a8a;">
+                   <a href="{% url 'FranchiseApp:home'  bb.id %}">
+                   <img src="{{bb.Company_subbanner.url}}" alt="" class="w-100">
+                  </a>
+                  </div>
+                  {% endfor %}
+                 
+                  
+             
+              </div>
+           </div>
+          </div>
+        </div>
+        <!-- Start Third Party Manufacturer -->
+        <!-- End Third Party Manufacturer -->
+        </div>
+         <!-- Image secton start -->
+         <!-- Image secton end -->
+</section>
+  
+  {% endblock main-content %}

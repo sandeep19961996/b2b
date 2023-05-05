@@ -1,0 +1,236 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.navbar-brand{
+  padding-left: 3.5rem;
+}
+.navbar-nav .nav-item .nav-link{
+    color: rgb(26, 24, 24);
+     padding-left:3.8rem;
+     font-size: 1.2rem;
+     font-weight: 600;
+}
+#about{
+    padding-top: 3rem;
+}
+.lol {
+    color: #272b41;
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+}
+/*  product css start */
+@media screen and (max-width: 567px) {
+  .card-text {
+    margin-bottom: 0.5em;
+  }
+}
+
+.card1 {
+  margin: 5%;
+  flex-direction: row;
+}
+.card-body {
+  padding: 0.5em 1em;
+}
+.card1.card img {
+  max-width: 10em;
+  height: 100%;
+  border-bottom-left-radius: calc(0.25rem - 1px);
+  border-top-left-radius: calc(0.25rem - 1px);
+} 
+
+
+/*==================================================
+ * Effect start
+ * ===============================================*/
+ 
+.effect{
+   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); 
+
+}
+.effect:hover{
+  box-shadow: 0 25px 50px -12px rgba(2, 233, 250, 0.5); 
+
+}
+/*==================================================
+ * Effect end
+ * ===============================================*/
+ .slider {
+  width: 50%;
+  margin: 100px auto;
+}
+
+.slick-slide {
+margin: 0px 10px;
+}
+
+.slick-slide img {
+width: 100%;
+}
+/*==================================================
+ * Products Details start
+ * ===============================================*/
+.companyinfo {
+  color: #000;
+  font-size: 22px;
+  text-align: left!important;
+  letter-spacing: 0;
+  font-weight: 600;
+  width: 100%;
+  float: left;
+  margin: 2px 0;
+}
+
+.inlinspanaddress {
+  float: left;
+  width: 100%;
+  color: #000;
+  text-transform: capitalize;
+  background: #fff;
+  padding: 3px 8px;
+  margin: 7px 0 7px 0;
+  border: 1px dashed #e7e7e7;
+  font-size: 15px;
+}
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 8px !important;
+}
+caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #777;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.df {
+  border: 1px solid #acacac;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 1px;
+
+}
+.companyinfo {
+  color: #000;
+  font-size: 22px;
+  text-align: left!important;
+  letter-spacing: 0;
+  font-weight: 600;
+  width: 100%;
+  float: left;
+  margin: 2px 0;
+
+}
+.hrRunO {
+  width: auto;
+  padding: 0px;
+  margin: 0px 0px 16px;
+  font-size: 30px;
+  font-weight: 400;
+  color: rgb(52, 55, 76);
+  line-height: 1.5em;
+  text-align: unset;
+}
+.hrRunO p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.dXdIfy {
+  width: unset;
+  height: unset;
+  display: flex;
+  flex-flow: row wrap;
+  flex: unset;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  background: none;
+  word-break: inherit;
+ 
+}
+.dXdIfy img{
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 1px;
+}
+.jIVSAC {
+  margin: 0px;
+  padding: 0px;
+  color: rgb(59, 59, 59);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5em;
+  text-align: inherit;
+  transition: background-color 0.2s ease 0s;
+
+}
+.jIVSAC a {
+  text-decoration: none;
+}
+.cuLnRd {
+  width: 200px;
+  height: 200px;
+  object-position: center center;
+  border-radius: 3px;
+
+  border: 1px solid rgb(218, 221, 226);
+}
+.guRpbr {
+  width: auto;
+  padding: 0px;
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(52, 55, 76);
+  line-height: 1.5em;
+  text-align: center;
+}
+/*==================================================
+ * Products Details end
+ * ===============================================*/
+
+ .slick-next {
+	right: 0;
+ 
+}
+.slick-prev {
+	left: 0;
+  z-index: 999;
+}
+
+.btn-wrap {
+	text-align: center;
+	width: 100%;
+}
+.slick-prev:before, .slick-next:before{
+  color: #fdfdfd;
+  background: red;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 5px;
+}
+button {
+	background-color: #ddd;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin: 10px;
+	font-size: 18px;
+	font-weight: 600;
+	transition: all 0.5s;
+}
+button.slick-disabled {
+	opacity: 0.6;
+}

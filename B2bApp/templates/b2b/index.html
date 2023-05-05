@@ -1,0 +1,418 @@
+{% extends 'core/core.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+{% block main-content %}
+    <!--==========================
+        BANNER PART START
+    ===========================-->
+    <section id="wsus__banner" style="background-image: url(' {% static "image/backgrund/pexels-fauxels-3184418.jpg" %}');">
+        <div class="wsus__banner_overlay">
+        
+            <div class="container">
+           
+            <div class="sideMenu">
+    <div class="menuIcon">
+      <span></span>
+    </div>
+    <h2 class="text-center text-white">Category</h2>
+  <ul>
+   {% for pro in product %}
+    <li >
+    <a href="{% url 'B2bApp:filter_subcategory' pro.id %}" >
+    {{pro.Product_name}}
+   </a> 
+    </li>
+   {% endfor %}
+  <ul>
+
+</div>
+    
+    {% comment %} <h1 >Mobile Menu</h1> {% endcomment %}
+    
+                <div class="row">
+                
+                    <div class="col-xl-8 m-auto">
+                    
+                        <div class="wsus__banner_text">
+                          <h1 class="sub-title text-center" >B2B MARKET PLACE</span></h1>
+                          <p >Find Genuine Buyer and Suppliers near you..</p>
+                      </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <form action="{%  url 'B2bApp:filter_cate' %}" method="get" navigation class="formm" >
+                            <div class="row">
+                                <!-- <div class="col-xl-3 col-sm-6 col-lg-3"> 
+                                 <div class="wsus__search_area">
+                                  <input type="search" placeholder="What are you looking for?" name="search">
+                                </div> 
+                              </div>  -->
+                                <div class="col-xl-4 col-md-4 col-sm-6 col-lg-4">
+                                <div class="wsus__search_area">
+                                <select class="select_2" name="cate" data-placeholder="Select a Category.." required >
+                                <option value=""></option>
+                                {%  for i in category %}
+                                <option value="{{i.name}}">{{i.name}}</option>
+                                {% endfor %}
+                                </select>
+                                </div>
+                                </div>
+                                <div class="col-xl-4 col-md-4 col-sm-6 col-lg-4">
+                                <div class="wsus__search_area">
+                                <select class="select_2" name="loc" data-placeholder="Select a Location.."required >
+                                <option value=""></option>
+                                {%  for i in location %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                                 </select>
+                                </div>
+                                </div>
+                                <input type="hidden" name="page_type" value="list_view">
+                                <div class="col-xl-4 col-md-4 col-sm-6 col-lg-4">
+                                <div class="wsus__search_area">
+                                <button type="submit" class="read_btn">Search</button>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+   
+    <!--==========================
+        BANNER PART END
+    ===========================-->
+
+<!--==========================
+        CATEGORY SLIDER START
+    ===========================-->
+<section id="wsus__category_slider" >
+        <div class="container">
+            <div class="wsus__category_slider_area">
+                <div class="row">
+                   {% for d in  category %}
+                 <div class="col-xl-2 col-sm-6 col-md-4">
+                  <a href="http://127.0.0.1:8000/filter-category/{{d.id}}/" class="wsus__category_single_slider" style="background-color:{{d.color}};">
+                            <i class="{{d.icon}}"></i><br><br>
+                            <p>{{d.name}}</p>
+                        </a>
+                        <!-- http://127.0.0.1:8000/filter-category/{{d.id}}/ -->
+                    </div>
+                           {% endfor %}
+                    <!-- <div class="col-xl-2 col-sm-6 col-md-4">
+                      <a href="http://127.0.0.1:8000/filter-category/2/" class="wsus__category_single_slider color_2">
+                          <i class="far fa-building"></i>
+                          <p>Third Party Manufacturing</p>
+                      </a>
+                  </div>
+                 <div class="col-xl-2 col-sm-6 col-md-4">
+                      <a href="http://127.0.0.1:8000/filter-category/3/" class="wsus__category_single_slider color_3">
+                          <i class="far fa-address-card"></i>
+                          <p>Ayurvedic PCD Franchise</p>
+                      </a>
+                  </div>
+                <div class="col-xl-2 col-sm-6 col-md-4">
+                      <a href="http://127.0.0.1:8000/filter-category/4/" class="wsus__category_single_slider color_1">
+                          <i class="fas fa-chart-area"></i>
+                          <p>Pharmaceutical Drugs and Medicine</p>
+                      </a>
+                  </div>
+                  <div class="col-xl-2 col-sm-6 col-md-4">
+                      <a href="http://127.0.0.1:8000/filter-category/5/" class="wsus__category_single_slider color_2">
+                          <i class="fab fa-audible"></i>
+                          <p>Ayurvedic Herbal Manufacturing</p>
+                      </a>
+                  </div>
+                  <div class="col-xl-2 col-sm-6 col-md-4">
+                    <a href="http://127.0.0.1:8000/filter-category/6/" class="wsus__category_single_slider color_4">
+                        <i class="fab fa-algolia"></i>
+                        <p>Business Opportunities</p>
+                    </a>
+                </div> -->
+           
+              </div>
+            </div>
+        </div>
+    </section>
+    <!--==========================
+        CATEGORY SLIDER END
+    ===========================-->
+   
+    <section style=" margin-top:31.2%; ">
+    <div class="autoplay3 m-0 p-0" id=""data-slick='{"slidesToShow": 6, "settings":{"slidesToShow":4 }]}'>
+    {% for b in company %}
+     <a href="{% url 'FranchiseApp:home' b.id  %}" target="_blank">
+        <div class="card bg-white m-0 p-0" style="height: 100%;">
+            <img src="{{b.Company_banner.url}}" class="w-100 ">
+        </div>
+       </a>
+       {% endfor %}
+       
+      
+       
+     </div>
+  
+    </section>
+
+
+    <!--==========================
+        FEATURES PART START
+    ===========================-->
+  
+    <section id="wsus__features">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 m-auto">
+                
+                    <div class="wsus__heading_area">
+                        <i class="fab fa-app-store"></i>
+                        <h2>Our Features</h2>
+                         <p>Lorem ipsum dolor sit amet, qui assum oblique praesent te. Quo ei erant essent scaevola, est ut clita dolorem, ei est mazim fuisset scribentur. Mel ut decore salutandi intellegam.</p> 
+                    </div>
+                </div>
+            </div>
+            <div class="features">
+                <div class="feature feature-one">
+                  <h3 class="feature__title">Your requirements are sent to right suppliers</h3>
+                  <p class="feature__desc">Monitors activity to identify project roadblocks</p>
+                  <img class="feature__img" src="{% static 'image/icon/Green-like-button-icon-design-on-transparent-background-PNG.png' %}" alt="">
+                </div>
+                <div class="wrapper">
+                  <div class="feature feature-two">
+                    <h3 class="feature__title">Suppliers will contact you</h3>
+                    <p class="feature__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                    <img class="feature__img" src="{% static 'image/icon/3594431.png' %}" alt="">
+                  </div>
+                  <div class="feature feature-three">
+                    <h3 class="feature__title">Post Your Requirements</h3>
+                    <p class="feature__desc">Regularly evaluates our talent to ensure quality</p>
+                    <img class="feature__img" src="{% static 'image/icon/134914.png' %}" alt="">
+                  </div>
+                </div>
+                <div class="feature feature-four">
+                  <h3 class="feature__title">Your Enquiry is Verified</h3>
+                  <p class="feature__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                  <img class="feature__img" src="{% static 'image/icon/verified-icon-png-1.jpg' %}" alt="">
+                </div>
+              </div>
+           
+          </div>
+          
+        
+    </section>  
+    <!--==========================
+        FEATURES PART END
+    ===========================-->
+
+  <!--==========================
+        OUR CATEGORY START
+    ===========================-->
+
+    <section id="wsus__categoryes">
+      <div class="wsus__categorye_overlay">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-8 m-auto">
+                      <div class="wsus__heading_area">
+                          <i class="fas fa-anchor"></i>
+                          <h2>Our Categories</h2>
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the when an unknown printer took.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+         
+              {% for pro in product %}
+                  <div class="col-xl-4 col-sm-6">
+                      <a href="{% url 'B2bApp:filter_subcategory' pro.id %}" class="wsus__category_single">
+                      
+                          <div class="wsus__category_img">
+                              <img src="{{pro.Product_image.url}}" alt="img" class="img-fluid w-100">
+                          </div>
+                          <div class="wsus__category_text">
+                              <div class="wsus__category_text_center">
+                                
+                                  <p >{{pro.Product_category}}</p>
+                                 
+                              </div>
+                          </div>
+                        
+                      </a>
+                  </div>
+                  {% endfor %} 
+                  
+                  <div class="col-xl-12 text-center">
+                      <a href="{% url 'B2bApp:category'  %}" class="read_btn">View All</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--==========================
+      OUR CATEGORY END
+  ===========================-->
+    <!--============================
+        TESTIMONIAL PART START
+    ==============================-->
+
+    <section id="wsus__testimonial" style="background-image:url(https://demo.websolutionus.com/dirlist/uploads/website-images/banner-2021-11-08-09-50-53-1634.jpg);">
+        <div class="wsus__test_overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 m-auto">
+                        <div class="wsus__heading_area">
+                            <i class="fas fa-american-sign-language-interpreting"></i>
+                            <!-- <h2>Meet some happy customers</h2> -->
+                            <h2>Meet our team</h2>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the when an unknown printer took.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row testi_slider">
+                    <div class="col-xl-4">
+                        <div class="wsus__single_clients">
+                            <p><i class="fa-solid fa-quote-left" id="top_icon"></i> Lorem Ipsum is simply Lorem Ipsum has been the industry&#039;s standard dummy text ever since the when an unknown printer
+                                took.</p>
+                            {% comment %} <img src="{% static 'image/custom-images/testimonial-2021-08-31-09-44-58-4262.jpg' %}" alt="clients" class="img-fluid"> {% endcomment %}
+                            <span class="c_name">Mr. Mk Bhatia</span>
+                            <span class="c_det">Founder</span>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="wsus__single_clients">
+                            <p><i class="fa-solid fa-quote-left" id="top_icon"></i> Lorem Ipsum is simply dummy Lorem Ipsum has been the industry&#039;s standard dummy text ever since the when an unknown printer
+                                took.</p>
+                            {% comment %} <img src="{% static 'image/custom-images/testimonial-2021-08-31-09-45-19-1374.jpg' %}" alt="clients" class="img-fluid"> {% endcomment %}
+                            <span class="c_name">Mr. Mithoon Bhatia</span>
+                            <span class="c_det">CEO</span>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="wsus__single_clients">
+                            <p><i class="fa-solid fa-quote-left" id="top_icon"></i> Lorem Ipsum is simply dummy Lorem Ipsum has been the industry&#039;s standard dummy text ever since the when an unknown printer
+                                took.</p>
+                            {% comment %} <img src="{% static 'image/custom-images/testimonial-2021-08-31-09-45-19-1374.jpg' %}" alt="clients" class="img-fluid"> {% endcomment %}
+                            <span class="c_name">Ms. Shilpa Chandel</span>
+                            <span class="c_det">CEO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============================
+        TESTIMONIAL PART END
+    ==============================-->
+
+<!--========================== style="box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    COMPANY LOGO PART START
+===========================-->    
+    <h3 class="mt-3 text-center" style="font-weight:650;">Featured Pharma Franchise Companies</h3>
+    <section style="" class="mt-3">
+    
+    <div class="autoplay2 m-0" id=""data-slick='{"slidesToShow": 6, "settings":{"slidesToShow":4 }]}'>
+         {% for i in company %}
+        <a href="{% url 'FranchiseApp:home' i.id %}" target="_blank">
+       <div class="card bg-white m-3" style="height: 100%; box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc">
+           <img src="{{i.Company_logo.url}}" class="w-100 ">
+       </div>
+        </a>
+        {% endfor %}
+     </div>
+    </section>
+<!--==========================
+       COMPANY LOGO PART END
+===========================-->        
+
+<!--==========================
+   TEXTIMONIAL PART START
+===========================-->  
+  <section class="Suppliers__Container-sc-unuoka-0 kxSCOZ mt-5">
+   <h1 class="H1-sc-102njfd-0 foThwy ">Find Companies by Region</h1>
+   <div class="sc-1kbxmi-0-FlexContainer-jUJHQe hLYugt">
+   <div class="FlexContainer-sc-1kbxmi-0 dqJxLV" direction="row">
+   <a class="sc-1nd3rwi-0-Anchor-cKWFwU dmMORV" href="http://127.0.0.1:8000/filter-location/Panchkula/">
+   <img class="Suppliers__Img-sc-unuoka-1 hkNcCu" src="{% static 'image/location/jhultaminar.svg' %}" width="auto" height="110px" alt="ahmedabad">
+   <p class="Text-sc-uzvrb9-0 cLDEBo">Panchkula</p>
+   </a>
+   <a class="sc-1nd3rwi-0-Anchor-cKWFwU dmMORV" href="http://127.0.0.1:8000/filter-location/Zirakpur/">
+   <img class="Suppliers__Img-sc-unuoka-1 hkNcCu" src="{% static 'image/location/bengaluru.svg' %}" width="auto" height="110px" alt="bengaluru">
+   <p class="Text-sc-uzvrb9-0 cLDEBo">Zirakpur</p>
+   </a>
+   </div>
+   <div class="FlexContainer-sc-1kbxmi-0 dqJxLV" direction="row">
+   <a class="sc-1nd3rwi-0-Anchor-cKWFwU dmMORV" href="http://127.0.0.1:8000/filter-location/Chandigarh/">
+   <img class="Suppliers__Img-sc-unuoka-1 hkNcCu" src="{% static 'image/location/chandigarh.svg' %}" width="auto" height="110px" alt="chandigarh">
+   <p class="Text-sc-uzvrb9-0 cLDEBo">Chandigarh</p>
+   </a>
+   <a class="sc-1nd3rwi-0-Anchor-cKWFwU dmMORV" href="http://127.0.0.1:8000/filter-location/Ambala/">
+   <img class="Suppliers__Img-sc-unuoka-1 hkNcCu" src="{% static 'image/location/ambala.svg' %}" width="auto" height="110px" alt="ambala">
+   <p class="Text-sc-uzvrb9-0 cLDEBo">Ambala</p>
+   </a>
+   </div>
+   <a class="sc-1nd3rwi-0-Anchor-cKWFwU dmMORV" href="http://127.0.0.1:8000/filter-location/Baddi/">
+   <img class="Suppliers__Img-sc-unuoka-1 hkNcCu" src="{% static 'image/location/gateway.svg' %}" width="auto" height="110px" alt="gateway">
+   <p class="Text-sc-uzvrb9-0 cLDEBo">Baddi</p>
+   </a>
+   </div>
+   </section>
+
+   <div class="container-fluid p-4">
+          <div class="row m-0 p-0 ">
+            {% comment %} <video  class="bgv mx-auto w-100 " playsinline muted loop autoplay >
+              <source src="{% static 'image/banner/23b7f70377bcc365b901a779020f582e(2).mp4 ' %}" type="video/mp4">
+            </video>   {% endcomment %}
+       <img src="{% static 'image/banner/23b7f70377bcc365b901a779020f582e.jpg ' %}" alt="" class="mx-auto  img-fluid w-100 h-100">  
+          </div>
+          </div> 
+    <!--==========================
+          TEXTIMONIAL PART START
+    ===========================-->
+
+   <section id="subscribe">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-6 col-12 col-md-10 col-lg-8 col-xl-6">
+                    <div class="subs_text mt-5">
+                        <h3>Subscribe to Newsletter</h3>
+                        <p>Subscribe to get update and information. Don&#039;t worry, we won&#039;t send spam!</p>
+                        
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-12 col-md-10 col-lg-8 col-xl-6">
+                    <div class="subs_form">
+                    <!-- <form method="post" action="{% url 'B2bApp:subscribe' %}">
+    {% csrf_token %}
+      <p class="m-0 text-white" style="color: azure;">{{ form.label_tag }}</p> 
+    {{form}}
+
+    <button type="submit" class="mt-2" style="padding: 16.5px 30px;  color: #fff; font-family: 'Poppins', sans-serif; border-radius: 40px;">Subscribe</button>
+     </form> -->
+                    <form method="post" action="{% url 'B2bApp:subscribe' %}" novalidate>
+                        {% csrf_token %}
+                            <div class="form-group ">
+                                {{ form.label_tag }}
+                                {{form}} 
+                                <button  type="submit" class="mt-2 "><i id="subscribe-spinner" class="loading-icon fas fa-sync fa-spin d-none"></i>  Subscribe Here</button>
+                            </div> 
+                             <!-- <input name="email" type="text" placeholder="Email">  
+                        <div class="form-group"></div>  -->
+                            
+                        </div>
+                        </form> 
+                          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  
+    <!--==========================
+       SUBSCRIBE PART END
+    ===========================-->
+
+  {% endblock main-content %}
+ 
+

@@ -1,0 +1,387 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaXpert  {% block title %}{{title}}{% endblock title %}</title>
+ 
+    <!-- css links start -->
+     <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://demo.websolutionus.com/dirlist/uploads/website-images/favicon-2021-11-15-07-39-24-8606.png">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'vendor/fontawesome/all.min.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'vendor/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate/animate.min.css' %}">  
+    <link rel="stylesheet" href="{% static 'vendor/chosen/select2.min.css' %}">  
+    <link rel="stylesheet" href="{% static 'vendor/slick/slick.css' %}"> 
+    <link rel="stylesheet" href="{% static 'vendor/slick/slick-theme.css' %}"> 
+    <!-- <link rel="stylesheet" href="{% static 'vendor/chosen/chosen.css' %}">   -->
+    <link rel="stylesheet" href="{% static 'css/new.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive2.css' %}">   
+    <!-- css links  -->
+
+</head>
+<body >
+  <!--==========================
+        TOPBAR PART START
+    ===========================-->
+    <section id="wsus__topbar">
+      <div class="container">
+          <div class="row">
+       
+              <div class="col-xl-6 col-md-7 d-none d-md-block">
+              
+               <ul class="wsus__topbar_left">
+                        
+                      <li><a href="/"><i class="fa-solid fa-envelope"></i> PharmaXpert.com</a></li>
+
+                      <li><a href="callto:111-233-1273"><i class="fa-solid fa-phone"></i>111-233-1273</a></li>
+                  </ul>
+              </div>
+              <div class="col-xl-6 col-md-5">
+                  <ul class="wsus__topbar_right">
+                  <li><a href="https://www.facebook.com/login"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="https://www.linkedin.com/login"><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a href="https://www.youtube.com" class="fab fa-youtube"></a></li>
+                  <li><a href="https://www.instagram.com/accounts/login" class="fab fa-instagram"></a></li>
+                  {% if request.user.username %}
+                  <li><a class="wsus__topbar_login "  href="{% url 'AccountApp:logout' %}"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #f2f2f2;"></i> Logout</a></li>
+                  {% else %}
+                  <li><a class="wsus__topbar_login"  href="{% url 'AccountApp:login' %}"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #f2f2f2;"></i> Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--==========================
+      TOPBAR PART END
+  ===========================-->
+  <!--==========================
+      POST REQUIRMENT POPUP START
+  ===========================-->
+
+    <div class="row text-white">
+    <div class="col-md-12">
+    <div class="modal-box">
+    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog " role="document">
+    <div class="modal-content clearfix">
+    <button type="button" class="close "  data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color: #fff;">×</span></button>
+    <div class="modal-body ">
+          <form action="{%  url 'AccountApp:post' %}" method="post" navigation>
+          {% csrf_token %}
+          <div class="col-12 bg-danger text-center text-white"  style="height: 35px;">
+          <h4 class="text-white p-1">Post your Requirement</h4>
+          </div>
+          <div class="row p-2">
+          
+          <div class="col-12 ">
+          <div class="input-group ">
+          <label for=""class="text-left">You are looking for?
+          <select class="custom-select" id="inputGroupSelect04" name="category"aria-required="true" >
+          </label>
+                <option value="">Select-Category</option>
+                <option value="Pharma Franchise">Pharma Franchise</option>
+                <option value="Third Party Manufacturing">Third Party Manufacturing</option>
+                <option value="Ayurvedic PCD Franchise">Ayurvedic PCD Franchise</option>
+                <option value="Pharmaceutical Drugs and Medicin">Pharmaceutical Drugs and Medicine</option>
+                <option value="Ayurvedic Herbal Manufacturing">Ayurvedic Herbal Manufacturing</option>
+                <option value="Business Opportunities">Business Opportunities</option>
+          </select>
+          </div>
+          <div class="input-group ">
+          <label for="" class="text-left">Requirement Emergency
+          <select class="custom-select" id="inputGroupSelect04" name="duretion" aria-required="true" >
+          </label>
+              <option value="">Select Time Duretion</option>
+              <option value="Immediate">Immediate</option>
+              <option value="Within 15 Days">Within 15 Days</option>
+              <option value="Within a Month">Within a Month</option>
+          </select>
+          </div>
+          <div class="input-group ">
+          <label for="" class="text-left">Call-Time Preference
+          <select class="custom-select" id="inputGroupSelect04" name="time" aria-required="true">
+          </label>
+            <option value="">Select The Call Time </option>
+            <option value="Anytime">Anytime</option>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Evening">Evening</option>
+          </select>
+          </div>
+         <div>
+         <!-- <div class="row">
+          <div class="col-lg-13"> -->
+          <div class="input-group ">
+               <label for="inputState">State</label>
+               <select class="form-control" id="inputState" name="state" >
+                        <option value="State">Select State</option>
+                        <option value="Andra Pradesh">Andra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madya Pradesh">Madya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Orissa">Orissa</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttaranchal">Uttaranchal</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                        <option value="Daman and Diu">Daman and Diu</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Lakshadeep">Lakshadeep</option>
+                        <option value="Pondicherry">Pondicherry</option>
+                      </select>
+                       </div>
+                      </div>
+                      <!-- <div class="col-lg-6"> -->
+                     <div class="input-group">
+                    <label for="inputDistrict">District</label>
+                       <select class="form-control" id="inputDistrict" name="city">
+                        <option value="">Select City </option>
+                      </select>
+                    </div>
+                  <!-- </div>
+                  </div> -->
+          <div class="col-12  mt-1 p-0">
+            <input type="text" class="form-control" placeholder="Email" name="email" required>
+          </div>
+          <div class="col-12 mt-1 p-0">
+              <input type="text" class="form-control" placeholder="Phone" name="phone" required>
+          </div>
+          <div class="col-12 mt-1 p-0">
+          <textarea class="form-control" required id="exampleFormControlTextarea1" rows="2" placeholder="Enter Your Message" name="mess"  type="text"></textarea>
+          </div>
+          <div class="col-12 mt-3 p-0">
+          <button type="submit" class="btn btn-danger w-100">Send</button>
+          </div>
+          </form>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+         
+<!--==========================
+    POST REQUIRMENT POPUP END
+  ===========================-->
+<!--==========================
+         MENU PART START
+  ===========================-->
+  <nav class="navbar navbar-expand-lg main_menu">
+      <div class="container">
+          <a class="navbar-brand" href="{% url 'B2bApp:home' %}">
+          {% for l in logo %}
+           <img src="{{l.logo_image.url}}" alt="" style="width: 8rem; margin: auto;    background: #2046DA;">
+          {% endfor %}
+             
+          </a>
+          <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+         
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'B2bApp:home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link " href="{% url 'B2bApp:listing'  %}">Listings</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link " href="{% url 'B2bApp:category' %}">Category</a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link  " href="{% url 'B2bApp:about' %}">About Us</a>
+              <li class="nav-item">
+              <a class="nav-link " href="{% url 'B2bApp:contact' %}">Contact</a>
+              </li>
+              </ul>
+              
+
+              <ul class="right_menu">
+                  <li class="nav-item signin">
+                  <a class="nav-link"  data-toggle="modal" data-target="#myModal" ><i class="fa-solid fa-square-plus" ></i> Post your Requirement</a>
+                  </li>
+              </ul>
+
+          </div>
+         
+      </div>
+       <form action="{%  url 'B2bApp:serach' %}" method="get">
+            <div class="search-block" id="mobile-serch">
+                <input type="hidden" name="r" value="companies/search-companies">
+                <input type="hidden" name="iType" id="iType" data="">
+                <input type="hidden" name="iName" id="iName" data="">
+                <input type="hidden" name="iNo" id="iNo" data=""> 
+                <input placeholder="Search for company, categories" type="serach" autocomplete="off" name="look" id="search" required>
+                <div id="searched_results" class="searched_dropdown" style="margin-top: 45px; background: rgb(248, 125, 9); width: 494px; position: relative; left: 424.5px;">
+                <ul id="" style="list-style:none; text-align:left;"> </ul>
+                </div>
+                <button class="searchbutton" radius="0" type="submit" id="company_search_button" role="button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </form>
+        </nav>
+        
+
+ 
+  <!--==========================
+         MENU PART END
+  ===========================-->
+{% comment %} {% block icon %} {% endcomment %}
+<!--Start Sticky Icon--> 
+{% comment %} <div class="sticky-icon">
+   <a href="https://www.instagram.com/?hl=en" class="Instagram"><i class="fab fa-instagram"></i> Instagram </a>
+   <a href="https://www.facebook.com/" class="Facebook"><i class="fab fa-facebook-f"> </i> Facebook </a>
+   <a href="https://aboutme.google.com/u/0/?referer=gplus" class="Google"><i class="fab fa-google-plus-g"> </i> Google + </a>
+   <a href="https://www.youtube.com/" class="Youtube"><i class="fab fa-youtube"></i> Youtube </a>
+   <a href="https://twitter.com/login" class="Twitter"><i class="fab fa-twitter"> </i> Twitter </a>   
+</div> {% endcomment %}
+<!--End Sticky Icon-->
+{% comment %} {% endblock icon %} {% endcomment %}
+{% block main-content %}
+
+{% endblock main-content %}
+
+  <!-- Footer Start -->
+  <section class="footer" id="footer">
+    <!-- <div class="container-fluid  text-white  pt-5" style="    background: url('{% static "image/backgrund/pexels-photo-925743.jpeg" %}');bac" > -->
+  <div class="container-fluid  text-white " style="    background-color:  #091E3E;" > 
+    <div class="row px-xl-5 pt-5 m-0">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+             {% for l in logo  %}
+               <h5 class="text-white  mb-4"><img src="{{l.logo_image.url}}" alt="" style="width: 50%;"></h5>
+             {% endfor %}
+            <p class="mb-4 text-white">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
+            <p class="mb-2 text-white"><i class="fa fa-map-marker-alt text-warning mr-3"></i>Panchkula</p>
+            <p class="mb-2 text-warning"><i class="fa fa-envelope text-warning mr-3"></i>info@example.com</p>
+            <p class="mb-0 text-white"><i class="fa fa-phone-alt text-warning mr-3"></i>+012 345 67890</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-white  mb-4">Helpfull links</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white   h6" href="{% url 'B2bApp:home' %}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                        <a class="text-white  mt-3 h6" href="{% url 'B2bApp:listing' %}"><i class="fa fa-angle-right mr-2"></i>Listings</a>
+                        <a class="text-white   mt-3 h6" href="{% url 'B2bApp:category' %}"><i class="fa fa-angle-right mr-2"></i>Categories</a>
+                        <a class="text-white   mt-3 h6 " href="{% url 'B2bApp:about' %}"><i class="fa fa-angle-right mr-2"></i>About</a>
+                        <a class="text-white   mt-3 h6" href="{% url 'B2bApp:contact' %}"><i class="fa fa-angle-right mr-2"></i>Contact </a>
+                    </div>
+                </div>
+               
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-white mb-4">Contact with us</h5>
+                    <div class="d-flex flex-column justify-content-start " id="black_logo" style="max-width: 17%;">
+                        <a class=" text-white " href="https://twitter.com/i/flow/login" style="text-decoration: none;"><i class="fab fa-twitter " style=" float: left;font-size:1.5rem;color: rgb(255, 0, 140);border-radius: 2rem;background-color: rgb(245, 187, 235);width: 2.5rem;height: 2.5rem;display: flex;justify-content: center;align-items: center;"></i><h6 style="margin-left: 4rem;margin-top: 0.5rem; color: #fff;">Twitter</h6></a>
+                        <a class="text-white mt-2" href="https://www.facebook.com/login" style="text-decoration: none;"> <i class="fab fa-facebook-f " style=" float: left;font-size:1.5rem;color: rgb(4, 161, 51);border-radius: 2rem;background-color: rgb(187, 245, 218);width: 2.5rem;height: 2.5rem;display: flex;justify-content: center;align-items: center;"></i><h6 style="margin-left: 4rem;margin-top: 0.5rem; color: #fff;">Facebook</h6> </a>
+                        <a class="text-white mt-2 " href="https://www.linkedin.com/login" style="text-decoration: none;"><i class="fab fa-linkedin-in" style=" float: left;font-size:1.5rem;color: rgb(0, 26, 255);border-radius: 2rem;background-color: rgb(187, 198, 245);width: 2.5rem;height: 2.5rem;display: flex;justify-content: center;align-items: center;"></i><h6 style="margin-left: 4rem;margin-top: 0.5rem; color: #fff;">Linkedin</h6></a>
+                        <a class="text-white mt-2" href="https://www.instagram.com/accounts/login" style="text-decoration: none;">  <i class="fab fa-instagram" style=" float: left;font-size:1.5rem;color: rgb(255, 0, 0);border-radius: 2rem;background-color: rgb(245, 187, 187);width: 2.5rem;height: 2.5rem;display: flex;justify-content: center;align-items: center;;"></i><h6 style="margin-left: 4rem;margin-top: 0.5rem;  color: #fff;">Instagram</h6></a>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    {% comment %} <h5 class="text-white mb-4">Subscribe</h5> {% endcomment %}
+                    {% comment %} <p class="text-white">Duo stet tempor ipsum sit amet magna ipsum tempor est</p> {% endcomment %}
+               
+                    <h5 class="text-white  text-uppercase  mb-3">Follow Us</h5>
+                    <div class="d-flex mt-5">
+                        <a class="btn btn-warning btn-square mr-2" href="https://twitter.com/i/flow/login"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-warning btn-square mr-2" href="https://www.facebook.com/login"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-warning btn-square mr-2" href="https://www.linkedin.com/login"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-warning btn-square" href="https://www.instagram.com/accounts/login"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+       
+    </div>
+ 
+      <hr class="bg-white ">
+    
+  <!-- <p class="text-white text-center ">&copy; Copyright 2023 - All Rights Reserved</p>  -->
+      <p class="text-white text-center">&copy; Copyright 2023. All Rights reserved PharmaXpert - B2B Marketplace</p>
+  </section>
+<!-- Footer End -->
+    
+    <!--=============SCROLL BTN==============-->
+    {% comment %} <div class="scroll_btn">
+      <i class="fa-solid fa-circle-up"></i>
+  </div> {% endcomment %}
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-warning back-to-top"><i class="fa fa-angle-double-up" style="color:white;"></i></a>
+  <!--=============SCROLL BTN==============-->
+
+
+<!-- javascripts links Start  -->
+    <script src="{% static 'vendor/slim/slim.js' %}"></script>
+    <!-- <script src="{% static 'vendor/animate/'}"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.js' %}"></script>
+    <!-- <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script> -->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+     <script src="{% static 'vendor/slick/slick.min.js' %}"></script>
+    <script src="{% static 'vendor/chosen/chosen.jquery.js' %}"></script>
+    <script src="{% static 'vendor/chosen/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/type/type.js' %}"></script>
+    {% comment %} <script src="{% static 'vendor/owl-carousel/owl.carousel.min.js' %}"></script> {% endcomment %}
+    <script src="{% static 'vendor/aos/aos.js'  %}"></script>
+      <script src="{% static 'js/indiastatecity.js' %}"></script> 
+    <script src="{% static 'js/scripts.js' %}"></script> 
+<!-- javascripts links End  -->
+
+  <!-- Use for js animation effect -->
+  <script>
+    AOS.init();
+      //=======SELECT2======
+      $(document).ready(function() {
+        $('.select_2').select2();
+    });
+
+   
+
+  </script>
+
+</body>
+</html>
+   
+        
+      
+                      
+   
+
+  

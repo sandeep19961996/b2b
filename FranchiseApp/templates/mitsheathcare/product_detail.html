@@ -1,0 +1,103 @@
+{% extends 'mitsheathcare/mitscore/core.html' %}
+{% load static %}
+{% block title %}Products_detail{% endblock title %}
+{% block main-content %}
+<section class="mt-5 ">
+    <div class="site-section bg-white">
+        <div class="container bg-white">
+          <div>
+            <ol style="display: flex;">
+              <li style="list-style: none;">
+                <a href="{% url 'FranchiseApp:home' company.id %}" style="font-size: 1rem;text-decoration: none;">Home</a>
+                <i class="fa-solid fa-chevron-up fa-rotate-90 ml-3"style="color: #050505;"></i>
+              </li>
+              <li style="list-style: none;">
+                <a href="{% url 'FranchiseApp:Products' company.id %}" style="font-size: 1rem;text-decoration: none;" class="ml-2">Products</a>
+                <i class="fa-solid fa-chevron-up fa-rotate-90 ml-3"style="color: #050505;"></i>
+              </li>
+              <li style="list-style: none;">
+                <a href="" style="font-size: 1rem;text-decoration: none;color: #050505;" class="ml-3">{{detail.name}}</a>
+              
+              </li>
+            </ol>
+          </div>
+          <div class="row mt-5">
+          
+         <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 df">
+          <div class="companyname" style="text-align: center !important;background: #fff;color: #000;">
+            {{detail.name}}</div>
+          <div class="zoom_imgb" style="max-height:390px;width: 100%;float: left;"><a style="float:left;width:100%;" title="Send Enquiry for St Kuff " href="" data-toggle="modal" data-target=".enquirybbbb1892">
+            <img style="min-height:390px; max-height:390px;width: 100%;float: left;" src="{{detail.pro_image.url}}" alt="St Kuff"></a></div>
+          <div class="companyname" style="text-align: center !important;background: #fff;color: #000;">
+               </div>
+      </div>
+            <!-- <div class="col-md-4 mr-auto">
+              <div class="card text-center  "  style="box-shadow: 0 25px 50px -12px #00000080;">
+                <img src="{{edmund.pro_image.url}}" alt="Image" class="img-fluid p-4 ">
+              </div>
+            </div> -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ml-5">
+              <a class="companyinfo" href="{% url 'FranchiseApp:home' company.id %}">Mits Healthcare Pvt Ltd</a>
+              <span class="inlinspanaddress">SCF - 416, Ist & 2nd Floor Motor Market Manimajra Chandigarh - 160101 , India</span>                     
+              <table class="table">
+              <!-- <caption style="font-weight: 700;color: #000;">Product Details:</caption> -->
+              <thead>
+                <th>Product Details:</th>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td scope="row" width="40%">Product Name:</td>
+                      <td>{{detail.name}}</td>
+                  </tr> <tr>
+                      <td scope="row" width="40%">Brand Name:</td>
+                      <td>Mits Healthcare</td>
+                  </tr> <tr>
+                      <td scope="row" width="40%">Tags</td>
+                      <td>{{detail.tags}}</td>
+                  </tr>  <tr>
+                      <td scope="row" width="40%">Packaging:</td>
+                      <td>{{detail.packing}}</td>
+                  </tr>  <tr>
+                      <td scope="row" width="40%" style="line-height:18px !important;">Composition / Material Type:</td>
+                      <td style="line-height:18px !important;">{{detail.description}}</td>
+                  </tr>  
+                </tbody>
+          </table>
+        </div>
+  </div>
+</div>
+
+            <!-- <div class="col-md-5">
+              <h2 class="text-black text-capitalize">{{edmund.name}}</h2>
+              <p style="color:#8b8787;" class="mt-5 h5" >Description</p>
+              <p class="h5">{{edmund.description}}</p>
+              <p style="color:#8b8787;" class="mt-5 h5" >Tags</p>
+              <p class="bg-dark  text-white text-center w-50 h5" >{{edmund.tags}}</p>
+              <p style="color:#8b8787;" class="mt-5 h5" >Packing</p>
+              <p class="h5">{{edmund.packing}}</p>
+           </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="container bg-white mt-5">
+        <p class="Text-sc-uzvrb9-0 hrRunO">Related Products</p>
+      <div class="row">
+      
+        {% for r in related %}
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="sc-1kbxmi-0-FlexContainer-cnOyeg dXdIfy" direction="row" wrap="wrap">
+          <a class="Anchor-sc-1nd3rwi-0 jIVSAC" href="{% url 'FranchiseApp:Productdetail' r.id %}">
+            
+            <img class="Product__Img-sc-tzxe02-0 cuLnRd" src="{{r.pro_image.url}}" alt="D DRYL SUSPENSION">
+        
+            <p class="Text-sc-uzvrb9-0 guRpbr">{{r.name}}</p>
+          </a>
+        
+        </div>
+      </div>
+        {% endfor %}
+        </div>
+      </div>
+</section> 
+
+{% endblock main-content %}

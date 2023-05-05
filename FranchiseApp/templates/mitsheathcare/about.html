@@ -1,0 +1,74 @@
+{% extends 'mitsheathcare/mitscore/core.html' %}
+{% load static %}
+{% block title %}About us{% endblock title %}
+{% block main-content %}
+
+<section id="about" class="about-contents section-padding mt-5" >
+    <div class="container" >
+        <div class="row">
+            
+<div class="col-lg-12 contents-wrapper">
+    <div class="contents">
+    <div class="row">
+    <div class="col-lg-12 col-sm-6 mt-5 mt-md-0">
+    <!-- dynamic code  -->  
+    {% comment %} {% for c in company  %} {% endcomment %}
+                <h1>About {{company.Company_name}}</h1>
+                <p><b>{{company.Company_name}}</b>
+               {{company.Company_about |striptags }}
+                     <br><i></i></p> 
+                <div class="table-responsive" style="margin-top:25px;">          
+                      <table class="table table-condensed">
+                          <tbody>
+                            <tr>
+                                <td><strong>Nature of Business</strong></td>
+                                <td>{{company.Company_nature_of_business}}</td>                                    
+                              </tr>
+                             <tr>
+                                <td><strong>Additional Business</strong></td>
+                                <td><ul>
+                                {% for b in business %}
+                                <li class="ml-4">{{b.name}}</li>
+                                {% comment %} <li class="ml-4">{{company.Company_additional_business_second}}</li>
+                                <li class="ml-4">{{company.Company_additional_business_third}}</li>
+                                <li class="ml-4">{{company.Company_additional_business_forth}}</li> {% endcomment %}
+                                {% endfor %}
+                                </ul></td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Company CEO</strong></td>
+                                <td>{{company.Company_ceo}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Corporate Office Address</strong></td>
+                                <td>{{company.Company_corporate_address}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Registered Office Address</strong></td>
+                                <td>{{company.Company_registed_address}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Industry</strong></td>
+                                <td>{{company.Company_industry}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Total Number of Employees</strong></td>
+                                <td>{{company.Company_total_employee}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Legal Status of Firm</strong></td>
+                                <td>{{company.Company_legal_status_of_firm}}</td>                                    
+                              </tr>
+                              <tr>
+                                <td><strong>Statutory Profile<br>PAN No</strong></td>
+                                <td>{{company.Company_pan_no}}</td>                                    
+                              </tr>
+                               <tr>
+                                <td><strong>GST No</strong></td>
+                                <td>{{company.Company_gts_no}}</td>                                    
+                              </tr>
+                              <tr>
+                        {% comment %} {% endfor %} {% endcomment %}
+    </ul></td></tr></tbody></table></div></div></div></div></div></div></div></section>
+
+{% endblock main-content %}
